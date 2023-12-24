@@ -245,7 +245,9 @@ void SuggestionWindow::arrange_window()
 {
 	// gtk2+
 	GtkRequisition sg_win_size;
-	gtk_widget_size_request(tree_view, &sg_win_size);
+	// gtk_widget_size_request(tree_view, &sg_win_size);
+	gtk_widget_get_preferred_size(tree_view, NULL, &sg_win_size);
+	
 	CHECK_ARRANGE("sg_win_size(%d, %d)", sg_win_size.width, sg_win_size.height);
 	if (sg_win_size.height > max_window_height) {
 		sg_win_size.height = max_window_height;
