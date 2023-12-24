@@ -357,10 +357,16 @@ void SuggestionWindow::arrange_window()
 	}
 
 	// fix arrange
-	GdkScreen* gdk_screen = gdk_screen_get_default();
-	int monitor_id = gdk_screen_get_monitor_at_window(gdk_screen, gdk_window);
+	//GdkScreen* gdk_screen = gdk_screen_get_default();
+	//int monitor_id = gdk_screen_get_monitor_at_window(gdk_screen, gdk_window);
 	GdkRectangle mon_rect;
-	gdk_screen_get_monitor_geometry(gdk_screen, monitor_id, &mon_rect);
+	GdkDisplay *display = gdk_display_get_default ();
+	GdkMonitor *monitor = gdk_display_get_monitor (GDK_DISPLAY (display), 0);
+	g_assert_nonnull (monitor);
+	gdk_monitor_get_geometry (GDK_MONITOR (monitor), &mon_rect);
+
+	// gdk_screen_get_monitor_geometry(gdk_screen, monitor_id, &mon_rect);
+	
 	CHECK_ARRANGE("%d %d %d %d", mon_rect.x, mon_rect.y, mon_rect.width, mon_rect.height);
 
 	// check vert
