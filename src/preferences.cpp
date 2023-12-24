@@ -160,7 +160,8 @@ GtkWidget* geanycc::CppCompletionFramework::create_config_widget(GtkDialog* dial
     gint ret = gtk_builder_add_from_string(builder, (gchar*)prefcpp_ui, prefcpp_ui_len, &err);
     if (err) {
 	printf("fail to load preference ui: %s\n", err->message);
-	GtkWidget* vbox = gtk_vbox_new(FALSE, 5);
+	// GtkWidget* vbox = gtk_vbox_new(FALSE, 5);
+	GtkWidget* vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	return vbox;
     }
 
